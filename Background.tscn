@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Fundo do jogo.png" type="Texture" id=1]
+
+[node name="Background" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+scale = Vector2( 1.12, 1 )
+motion_mirroring = Vector2( 1680, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxLayer"]
+scale = Vector2( 20.6, 11.24 )
+texture = ExtResource( 1 )
+centered = false
+

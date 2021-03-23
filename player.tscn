@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://player.gd" type="Script" id=1]
+[ext_resource path="res://rohon/rohon/static1.png" type="Texture" id=2]
+[ext_resource path="res://rohon/rohon/walk1.png" type="Texture" id=3]
+[ext_resource path="res://rohon/rohon/walk2.png" type="Texture" id=4]
+[ext_resource path="res://rohon/rohon/walk3.png" type="Texture" id=5]
+[ext_resource path="res://rohon/rohon/walk4.png" type="Texture" id=6]
+[ext_resource path="res://rohon/rohon/jump3.png" type="Texture" id=7]
+[ext_resource path="res://Camera2D.tscn" type="PackedScene" id=8]
+[ext_resource path="res://audio/Jump2.wav" type="AudioStream" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "Run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 13.5684
+height = 24.7383
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 17.6365, 5.48932 )
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 18.4674
+height = 29.1131
+
+[node name="player" type="KinematicBody2D"]
+position = Vector2( 254.64, 351.524 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Idle"
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Camera2D" parent="." instance=ExtResource( 8 )]
+
+[node name="Pe" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Colisor" type="CollisionShape2D" parent="Pe"]
+position = Vector2( 0.681122, 28.9478 )
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="JumpFx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+
+[node name="Dano" type="Area2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Colisor" type="CollisionShape2D" parent="Dano"]
+position = Vector2( 0.323547, -2.9118 )
+shape = SubResource( 4 )
+[connection signal="body_entered" from="Pe" to="." method="_on_Pe_body_entered"]
+[connection signal="body_entered" from="Dano" to="." method="_on_Dano_body_entered"]
