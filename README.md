@@ -3,7 +3,9 @@ Controle um neandertal e tente passar da única fase disponível no jogo
 
 ## Controles
 A, D - Movimento para esquerda e direita
+
 W, S - Movimento para cima e para baixo
+
 Space - Pulo
 
 ## Como executar
